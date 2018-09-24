@@ -7,32 +7,28 @@ module.exports = function makeExchange(currency) {
     } else {
         let result = {'H': 0, 'Q': 0, 'D': 0, 'N': 0, 'P': 0};
 
-        while (true) {
-            if (currency <= 0){
-                break;
-            }
-
+        for (;currency > 0;) {
             if (currency >= 50){
                 currency -= 50;
-                result.H += 1;
+                result.H++;
             } else if (currency >= 25){
                 currency -= 25;
-                result.Q += 1;
+                result.Q++;
             } else if (currency >= 10){
                 currency -= 10;
-                result.D += 1;
+                result.D++;
             } else if (currency >= 5){
                 currency -= 5;
-                result.N += 1;
+                result.N++;
             } else if (currency >= 1){
                 currency -= 1;
-                result.P += 1;
+                result.P++;
             }
         }
 
-        let checker = ['H', 'Q', 'D', 'N', 'P'];
+        const checker = ['H', 'Q', 'D', 'N', 'P'];
 
-        checker.forEach(function(element){
+        checker.forEach((element) => {
             if(result[element] === 0){
                 delete result[element];
             }
